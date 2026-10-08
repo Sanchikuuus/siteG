@@ -1,0 +1,14 @@
+---
+// Замініть цей текст і список на інформацію про вашу команду.
+const description = 'Тут буде коротка історія проєкту, ле це не точно';
+const values = ['Уважність до деталей', 'Зрозуміла комунікація', 'Якість у кожному рішенні', 'Міати'];
+---
+
+<section aria-labelledby="about-title">
+	<h1 id="about-title">Про нас</h1>
+	<p class="intro">{description}</p>
+	<div class="card">
+		<h2>Що для нас важливо</h2>
+		<ul>{values.map((value) => <li>{value}</li>)}</ul>
+	</div>
+</section>

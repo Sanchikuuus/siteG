@@ -1,0 +1,22 @@
+---
+// Додайте або змініть об’єкти, щоб оновити картки продуктів.
+const products = [
+	{ name: 'Продукт 1', description: 'Короткий опис продукту та його головної переваги.' },
+	{ name: 'Продукт 2', description: 'Розкажіть, для кого цей продукт і яку задачу він вирішує.' },
+	{ name: 'Продукт 3', description: 'Тут можна додати особливості або умови замовлення.' },
+];
+---
+
+<section aria-labelledby="products-title">
+	<h1 id="products-title">Наші продукти</h1>
+	<p class="intro">Базові пропозиції нашого проєкту. Детальну інформацію додамо згодом.</p>
+	<div class="grid">
+		{products.map((product) => (
+			<article class="card">
+				<h2>{product.name}</h2>
+				<p>{product.description}</p>
+			</article>
+		))}
+	</div>
+	<p style="margin-top: 1.5rem"><a class="button" href="/contacts">Дізнатися більше</a></p>
+</section>

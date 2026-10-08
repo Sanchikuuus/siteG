@@ -1,0 +1,22 @@
+---
+// Замініть демонстраційні новини. date — дата у форматі YYYY-MM-DD.
+const news = [
+	{ title: 'Перша новина проєкту', date: '2026-10-08', summary: 'Тут буде короткий опис події, оновлення або важливого оголошення.' },
+	{ title: 'Наші найближчі плани', date: '2026-10-07', summary: 'Поділіться тим, над чим працюєте та що плануєте додати найближчим часом.' },
+];
+const formatDate = (date: string) => new Intl.DateTimeFormat('uk-UA', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(date));
+---
+
+<section aria-labelledby="news-title">
+	<h1 id="news-title">Новини</h1>
+	<p class="intro">Події та оновлення нашого проєкту.</p>
+	<div class="grid">
+		{news.map((item) => (
+			<article class="card">
+				<p><time datetime={item.date}>{formatDate(item.date)}</time></p>
+				<h2>{item.title}</h2>
+				<p>{item.summary}</p>
+			</article>
+		))}
+	</div>
+</section>

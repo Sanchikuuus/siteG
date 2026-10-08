@@ -1,0 +1,37 @@
+<section aria-labelledby="feedback-title">
+	<h1 id="feedback-title">Зворотний зв’язок</h1>
+	<p class="intro">Залиште запитання або пропозицію. Це демонстраційна форма: повідомлення поки не надсилаються.</p>
+	<!-- Для реального надсилання підключіть обробник форми або сервіс. -->
+	<form class="card" id="feedback-form" data-astro-reload>
+		<label for="name">Ваше ім’я</label>
+		<input id="name" name="name" autocomplete="name" placeholder="Ім’я" required />
+		<label for="email">Email</label>
+		<input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+		<label for="message">Повідомлення</label>
+		<textarea id="message" name="message" rows="5" placeholder="Напишіть ваше запитання…" required></textarea>
+		<button class="button" type="submit">Перевірити форму</button>
+		<p id="feedback-status" role="status" aria-live="polite"></p>
+	</form>
+</section>
+
+<script>
+	// ClientRouter не перезапускає цей скрипт при кожному переході.
+	document.addEventListener('astro:page-load', () => {
+		const form = document.querySelector<HTMLFormElement>('#feedback-form');
+		if (!form || form.dataset.initialized) return;
+		form.dataset.initialized = 'true';
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const status = form.querySelector('#feedback-status');
+			if (status) status.textContent = 'Форму заповнено. У демоверсії повідомлення не надсилається.';
+		});
+	});
+</script>
+
+<style>
+	form { max-width: 600px; }
+	label { display: block; font-weight: 600; margin-bottom: .4rem; }
+	input, textarea { display: block; width: 100%; margin-bottom: 1rem; padding: .7rem; border: 1px solid #a8b4c5; border-radius: .4rem; font: inherit; background: #fff; color: inherit; }
+	textarea { resize: vertical; }
+	#feedback-status:not(:empty) { margin-top: 1rem; }
+</style>

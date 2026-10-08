@@ -1,11 +1,24 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const sections = [
+	{ href: '/about', title: 'Про нас', text: 'Познайомтеся з нашим проєктом і командою.' },
+	{ href: '/products', title: 'Продукти', text: 'Перегляньте наші основні пропозиції.' },
+	{ href: '/news', title: 'Новини', text: 'Дізнайтеся про останні події та плани.' },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Головна">
+	<section aria-labelledby="home-title">
+		<h1 id="home-title">Вітаємо у нашому проєкті</h1>
+		<p class="intro">Тут буде короткий опис вашої діяльності та головної пропозиції для відвідувачів.</p>
+		<div class="grid">
+			{sections.map((section) => (
+				<article class="card">
+					<h2><a href={section.href}>{section.title}</a></h2>
+					<p>{section.text}</p>
+				</article>
+			))}
+		</div>
+		<p style="margin-top: 1.5rem"><a class="button" href="/feedback">Зв’язатися з нами</a></p>
+	</section>
 </Layout>
