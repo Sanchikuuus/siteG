@@ -1,5 +1,6 @@
 ---
 import background from '../assets/background.svg';
+import { sitePath } from '../utils/paths';
 import { ClientRouter, fade } from 'astro:transitions';
 
 interface Props {
@@ -25,8 +26,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <title>{title} | Test Page</title>
     <ClientRouter fallback="animate" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <link rel="icon" href="/favicon.ico"/>
+    <link rel="icon" type="image/svg+xml" href={`${sitePath()}favicon.svg`}/>
+    <link rel="icon" href={`${sitePath()}favicon.ico`}/>
     <meta name="generator" content={Astro.generator}/>
 </head>
 <body>
@@ -34,10 +35,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 <!-- Зберігаємо той самий фон під час переходів між сторінками. -->
 <img id="background" src={background.src} alt="" fetchpriority="high" transition:persist="site-background" />
 <header class="container site-header">
-    <a class="brand" href="/">Test Page</a>
+    <a class="brand" href={sitePath()}>Test Page</a>
     <nav aria-label="Основна навігація">
         {links.map(({href, label}) => (
-                <a href={href} aria-current={currentPath === href ? 'page' : undefined}>{label}</a>
+                <a href={sitePath(href)} aria-current={currentPath === (sitePath(href).replace(/\/$/, '') || '/') ? 'page' : undefined}>{label}</a>
         ))}
     </nav>
 </header>
